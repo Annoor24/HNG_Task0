@@ -13,4 +13,4 @@ A simple, responsive, and testable profile card built with HTML, CSS, and Vanill
 ## 🧩 How to Run Locally
 1. Clone this repository:
    bash
-   git clone https://github.com/yourusername/profile-card.git
+   git clone https://github.com/Annoor24/HNG_Task0.git
