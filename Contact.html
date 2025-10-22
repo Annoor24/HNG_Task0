@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f5f5f5;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      background: #222;
+      margin: 0;
+      padding: 10px;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+
+    nav a:hover {
+      background: #0077cc;
+    }
+
+    main {
+      background: #fff;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    form div {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      background: #0077cc;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #005fa3;
+    }
+
+    span {
+      color: red;
+      font-size: 0.9em;
+    }
+
+    #success {
+      color: green;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="About.html">About Me</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <form id="contactForm" novalidate>
+      <div>
+        <label for="name">Full Name</label>
+        <input type="text" id="name" data-testid="test-contact-name" aria-describedby="error-name">
+        <span id="error-name" data-testid="test-contact-error-name"></span>
+      </div>
+
+      <div>
+        <label for="email">Email</label>
+        <input type="email" id="email" data-testid="test-contact-email" aria-describedby="error-email">
+        <span id="error-email" data-testid="test-contact-error-email"></span>
+      </div>
+
+      <div>
+        <label for="subject">Subject</label>
+        <input type="text" id="subject" data-testid="test-contact-subject" aria-describedby="error-subject">
+        <span id="error-subject" data-testid="test-contact-error-subject"></span>
+      </div>
+
+      <div>
+        <label for="message">Message</label>
+        <textarea id="message" rows="5" data-testid="test-contact-message" aria-describedby="error-message"></textarea>
+        <span id="error-message" data-testid="test-contact-error-message"></span>
+      </div>
+
+      <button type="submit" data-testid="test-contact-submit">Submit</button>
+      <p id="success" data-testid="test-contact-success"></p>
+    </form>
+  </main>
+
+  <script>
+    const form = document.getElementById("contactForm");
+    const successMsg = document.getElementById("success");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      let isValid = true;
+      successMsg.textContent = "";
+
+      const name = document.getElementById("name");
+      const email = document.getElementById("email");
+      const subject = document.getElementById("subject");
+      const message = document.getElementById("message");
+
+      document.querySelectorAll("span[id^='error-']").forEach(span => span.textContent = "");
+
+      if (!name.value.trim()) {
+        document.getElementById("error-name").textContent = "Full name is required.";
+        isValid = false;
+      }
+
+      if (!email.value.includes("@") || !email.value.includes(".")) {
+        document.getElementById("error-email").textContent = "Enter a valid email address.";
+        isValid = false;
+      }
+
+      if (!subject.value.trim()) {
+        document.getElementById("error-subject").textContent = "Subject is required.";
+        isValid = false;
+      }
+
+      if (message.value.trim().length < 10) {
+        document.getElementById("error-message").textContent = "Message must be at least 10 characters.";
+        isValid = false;
+      }
+
+      if (isValid) {
+        successMsg.textContent = "Thank you! Your message has been sent successfully.";
+        form.reset();
+      }
+    });
+  </script>
+</body>
+</html>
