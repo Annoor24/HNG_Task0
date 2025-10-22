@@ -48,7 +48,7 @@ Contains a validated contact form with:
 Layouts adapt automatically using CSS Flexbox and media queries.
 
 ## ⚙️ Accessibility
-- Semantic HTML ("<article>", '<main>', '<section>', '<nav>', '<figure>', '<header>')
+- Semantic HTML (<article>, '<main>', '<section>', '<nav>', '<figure>', '<header>')
 - Labels linked to form inputs using the 'for' attribute
 - aria-describedby attributes for error messages
 - Keyboard-focusable links and visible focus states
